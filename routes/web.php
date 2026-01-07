@@ -36,17 +36,17 @@ Route::middleware(['auth', 'verified'])->group(function () {
         
         Route::get('/students', function () {
             $students = \App\Models\User::where('role', 'student')->get();
-            return view('admin.students', compact('students'));
+            return view('studentdashboard', compact('students'));
         })->name('admin.students');
         
         Route::get('/courses', function () {
             $courses = \App\Models\Course::all();
-            return view('admin.courses', compact('courses'));
+            return view('courses', compact('courses'));
         })->name('admin.courses');
         
         Route::get('/teacher', function () {
             $teachers = \App\Models\User::where('role', 'teacher')->get();
-            return view('admin.teacher', compact('teachers'));
+            return view('teacherdashboard', compact('teachers'));
         })->name('admin.teacher');
     });
     
@@ -74,7 +74,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         })->name('student.dashboard');
         
         Route::get('/courses', function () {
-            return view('student.courses');
+            return view('courses');
         })->name('student.courses');
         
         Route::get('/assignments', function () {
